@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İşçi Ödeme Takip Sistemi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>İşçi Ödeme Takip Sistemi</h1>
+
+        <div id="loading-indicator">
+            <h1>Yükleniyor...</h1>
+        </div>
+
+        <main id="main-content" style="display: none;">
+            <!-- FORM ALANLARI -->
+            <div class="grid-container">
+                <!-- YENİ CARİ EKLEME FORMU -->
+                <div class="form-card">
+                    <h2>Yeni Cari Ekle</h2>
+                    <form id="cari-form">
+                        <input name="cariKod" placeholder="Cari Kodu (*)" required />
+                        <input name="unvan" placeholder="Unvan (*)" required />
+                        <input name="iban" placeholder="IBAN (*)" required />
+                        <input name="bankaAdi" placeholder="Banka Adı" />
+                        <input name="vergiNo" placeholder="Vergi No" />
+                        <select name="dovizTipi">
+                            <option value="TL">TL</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                        </select>
+                        <button type="submit">Cari Ekle</button>
+                    </form>
+                </div>
+
+                <!-- YENİ ÇALIŞAN EKLEME FORMU -->
+                <div class="form-card">
+                    <h2>Yeni Çalışan Ekle</h2>
+                    <form id="employee-form">
+                        <input name="ad" placeholder="Ad (*)" required />
+                        <input name="soyad" placeholder="Soyad (*)" required />
+                        <input name="tcNo" placeholder="TC Kimlik No" />
+                        <input name="departman" placeholder="Departman" />
+                        <input name="pozisyon" placeholder="Pozisyon" />
+                        <label>İşe Giriş Tarihi (*)</label>
+                        <input name="iseGirisTarihi" type="date" required />
+                        <select name="cariId" required>
+                            <option value="">Bağlı Olacağı Cari'yi Seçin... (*)</option>
+                        </select>
+                        <button type="submit">Çalışan Ekle</button>
+                    </form>
+                </div>
+
+                <!-- YENİ ÖDEME EKLEME FORMU -->
+                <div class="form-card">
+                    <h2>Yeni Ödeme Ekle</h2>
+                    <form id="payment-form">
+                        <select name="employeeId" required>
+                            <option value="">Çalışan Seçin... (*)</option>
+                        </select>
+                        <label>Ödeme Tarihi (*)</label>
+                        <input name="tarih" type="date" required />
+                        <input name="brutTutar" type="number" step="0.01" placeholder="Brüt Tutar (*)" required />
+                        <input name="kesinti" type="number" step="0.01" placeholder="Kesinti" />
+                        <select name="odemeTuru">
+                            <option value="MAAS">Maaş</option>
+                            <option value="PRIM">Prim</option>
+                            <option value="AVANS">Avans</option>
+                            <option value="EK_ODEME">Ek Ödeme</option>
+                        </select>
+                        <select name="kasaBankaSecimi">
+                            <option value="BANKA">Banka</option>
+                            <option value="KASA">Kasa</option>
+                        </select>
+                        <input name="aciklama" placeholder="Açıklama" />
+                        <button type="submit">Öde</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- LİSTE ALANLARI -->
+            <div class="lists-container">
+                <!-- ÖDEME GEÇMİŞİ -->
+                <div class="list-card">
+                    <div class="list-header">
+                        <h2>Ödeme Geçmişi</h2>
+                        <form class="search-form" id="payment-search-form">
+                            <input name="isim" type="search" placeholder="Çalışan Adı/Soyadı Ara...">
+                            <button type="submit">Ara</button>
+                            <button type="reset" class="reset-btn">Sıfırla</button>
+                        </form>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Çalışan</th>
+                                <th>Ödeme Türü</th>
+                                <th>Net Tutar</th>
+                                <th>Tarih</th>
+                                <th>Kanal</th>
+                                <th>Açıklama</th>
+                            </tr>
+                        </thead>
+                        <tbody id="payments-table-body"></tbody>
+                    </table>
+                </div>
+
+                <!-- CARİLER LİSTESİ -->
+                <div class="list-card">
+                     <div class="list-header">
+                        <h2>Cariler</h2>
+                        <form class="search-form" id="cari-search-form">
+                            <input name="kod" type="search" placeholder="Cari Kodu Ara...">
+                            <input name="unvan" type="search" placeholder="Cari Unvanı Ara...">
+                            <button type="submit">Ara</button>
+                            <button type="reset" class="reset-btn">Sıfırla</button>
+                        </form>
+                    </div>
+                    <ul id="cariler-list"></ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- CARİ DETAY MODAL -->
+    <div id="cari-detail-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+            <div id="modal-body">
+                <!-- Detaylar buraya JS ile eklenecek -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
