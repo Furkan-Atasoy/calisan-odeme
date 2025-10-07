@@ -1,0 +1,247 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+  color: #1a2b4e;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+  margin-top: 0;
+  color: #3b5998;
+  font-size: 1.2rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-card, .list-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input, select, textarea, button {
+  padding: 0.85rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #3b5998;
+    box-shadow: 0 0 0 2px rgba(59, 89, 152, 0.2);
+}
+
+label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: -0.5rem;
+}
+
+button {
+  border: none;
+  background-color: #3b5998;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #1a2b4e;
+}
+
+.lists-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f7f7f7;
+  font-weight: 600;
+}
+
+ul {
+  padding-left: 0;
+  list-style-type: none;
+  margin: 0;
+}
+
+li {
+  padding: 0.6rem;
+  border-bottom: 1px solid #eee;
+}
+li:last-child {
+  border-bottom: none;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.list-header h2 {
+    margin: 0;
+    border: none;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.search-form input {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    width: 150px;
+}
+
+.search-form button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    width: auto;
+}
+
+.reset-btn {
+    background-color: #6c757d;
+}
+.reset-btn:hover {
+    background-color: #5a6268;
+}
+
+#cariler-list li {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#cariler-list li:hover {
+    background-color: #f0f2f5;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #888;
+    cursor: pointer;
+    padding: 0;
+}
+
+#modal-body h3 {
+    color: #3b5998;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+}
+
+#modal-body p {
+    margin: 0.5rem 0;
+}
+
+#modal-body ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+#loading-indicator {
+    text-align: center;
+    padding: 4rem;
+}
+
+/* --- LOGIN SAYFASI --- */
+.login-container {
+  max-width: 400px;
+  margin: 5rem auto;
+  text-align: center;
+}
+
+.login-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.error-msg {
+  color: red;
+  margin-top: 1rem;
+}
