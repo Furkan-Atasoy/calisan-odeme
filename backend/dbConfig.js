@@ -4,10 +4,10 @@ const sql = require("mssql");
 const config = {
   user: "furkan-admin2", 
   password: "furk@n1726", 
-  server: "furkan-admin2.database.windows.net", // Azure server name
-  database: "furkan-db", // varsayılan database
+  server: "furkan-admin2.database.windows.net",
+  database: "furkan-db",
   options: {
-    encrypt: true, //Azurede true
+    encrypt: true,
     trustServerCertificate: false
   }
 };
