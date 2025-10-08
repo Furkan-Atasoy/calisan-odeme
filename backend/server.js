@@ -75,7 +75,6 @@ app.get('/api/employee', async (req, res) => {
 
 app.post('/api/employee', async (req, res) => {
     try {
-        // 1. Yeni alanları request body'den al
         const { ad, soyad, tcNo, departman, pozisyon, iseGirisTarihi, cariId } = req.body;
 
         if (!ad || !soyad || !iseGirisTarihi || !cariId) {
