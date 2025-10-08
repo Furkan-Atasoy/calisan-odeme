@@ -1,6 +1,4 @@
-// ======================================================================
-//  GEREKLİ KÜTÜPHANELER
-// ======================================================================
+//KÜTÜPHANELER
 const express = require('express');
 const cors = require('cors');
 const { poolPromise, sql } = require('./dbConfig');
@@ -10,15 +8,12 @@ const bcrypt = require('bcrypt');
 const app = express();
 const port = 5500;
 
-// ======================================================================
-//  ORTAK AYARLAR (MIDDLEWARE)
-// ======================================================================
+//MIDDLEWARE
 app.use(cors());
 app.use(express.json());
 
-// ======================================================================
-//  API ROTALARI (TÜM API İSTEKLERİ BURADA)
-// ======================================================================
+
+//API ISTEKLERI
 
 // CARİ İŞLEMLERİ
 app.get('/api/cari', async (req, res) => {
@@ -89,16 +84,14 @@ app.post('/api/employee', async (req, res) => {
         const pool = await poolPromise;
         const request = pool.request();
             
-        // 2. Gelen tüm verileri input olarak ekle
         request.input('ad', sql.NVarChar, ad);
         request.input('soyad', sql.NVarChar, soyad);
-        request.input('tcNo', sql.NVarChar, tcNo || null); // Opsiyonel alanlar için || null kullan
+        request.input('tcNo', sql.NVarChar, tcNo || null);
         request.input('departman', sql.NVarChar, departman || null);
         request.input('pozisyon', sql.NVarChar, pozisyon || null);
         request.input('iseGirisTarihi', sql.Date, iseGirisTarihi);
         request.input('cariId', sql.Int, cariId);
 
-        // 3. SQL sorgusunu yeni alanları içerecek şekilde güncelle
         await request.query(`
             INSERT INTO Employee (ad, soyad, tcNo, departman, pozisyon, iseGirisTarihi, cariId) 
             VALUES (@ad, @soyad, @tcNo, @departman, @pozisyon, @iseGirisTarihi, @cariId)
@@ -106,7 +99,6 @@ app.post('/api/employee', async (req, res) => {
         
         res.status(201).send({ message: 'Çalışan başarıyla eklendi.' });
     } catch (err) {
-        // TC No unique hatasını yakala
         if (err.message.includes('UNIQUE KEY constraint')) {
             return res.status(409).send({ message: 'Bu TC Kimlik Numarası zaten kayıtlı.' });
         }
@@ -176,7 +168,7 @@ app.post('/api/payment', async (req, res) => {
 });
 
 
-// KULLANICI / YETKİ İŞLEMLERİ
+// KULLANICI İŞLEMLERİ
 app.post('/api/login', async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -235,23 +227,15 @@ app.get('/api/users', async (req, res) => {
 });
 
 
-// ======================================================================
-//  STATİK DOSYALARIN VE SPA ROUTING'İNİN SERVİS EDİLMESİ
-//  (TÜM API ROUTE'LARINDAN SONRA GELMELİDİR)
-// ======================================================================
-
-// 1. Frontend klasöründeki statik dosyaları (CSS, JS, resimler) sun
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-// 2. NİHAİ DÜZELTME: RegEx kullanarak /api ile BAŞLAMAYAN tüm istekleri yakala.
-//    Bu, en güncel Express/Router versiyonlarıyla uyumlu çalışır.
 app.get(/^(?!\/api).*/, (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
 });
 
-// ======================================================================
-//  SUNUCUYU BAŞLATMA
-// ======================================================================
+
+
+
 app.listen(port, () => {
   console.log(`Sunucu http://localhost:${port} adresinde çalışıyor`);
 });
