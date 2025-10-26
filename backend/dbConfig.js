@@ -3,7 +3,7 @@ const sql = require("mssql");
 
 const config = {
   user: "furkan-admin2", 
-  password: "furk@n1726", 
+  password: "", 
   server: "furkan-admin2.database.windows.net",
   database: "furkan-db",
   options: {
